@@ -88,9 +88,20 @@ class TestEcho(unittest.TestCase):
             result, argparse.ArgumentParser,
             "create_parser() function is not returning a parser object")
 
-    #
-    # Students: add more parser tests here
-    #
+    
+    def test_help(self):
+        """Check if usage output matches what is expected."""
+        args = ["-h"]
+        process = subprocess.Popen(
+            ["python", "./echo.py", "-h"],
+            stdout=subprocess.PIPE)
+        stdout, _ = process.communicate()
+        # stdout, stderr = run_capture(self.module.__file__, args)
+        with open('USAGE') as f:
+            usage = f.read()
+        self.assertEqual(stdout.decode(), usage)
+        pass
+
 
     def test_echo(self):
         """Check if main() function prints anything at all"""
@@ -114,9 +125,39 @@ class TestEcho(unittest.TestCase):
         assert output, "The program did not print anything."
         self.assertEqual(output[0], "hello world")
 
-    #
-    # Students: add more cmd line options tests here.
-    #
+    
+    
+    def test_upper(self):
+        """Check if short option '-u' performs uppercasing"""
+        args = ["-u", "hello world"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "HELLO WORLD")
+
+
+    def test_upper_long(self):
+        """Check if short option '-u' performs uppercasing"""
+        args = ["--upper", "hello world"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "HELLO WORLD")
+
+
+    def test_no_options(self):
+        self.test_simple_echo()
+
+    
+    def test_all_options(self):
+        args = ["-tul", "hElLo woRlD"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "HeLlO WOrlD")
+
+
+
 
 
 if __name__ == '__main__':
