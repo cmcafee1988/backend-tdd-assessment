@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """An enhanced version of the 'echo' cmd line utility."""
 
-__author__ = "???"
+__author__ = "https://kenzie.zoom.us/rec/play/6MAud7qgrm83HYLHsASDU6MvW43pfKys1nce-_Bbzx6zViMENVWlYrITYWSpqDbUA7gs9q-oF-SYuEc?startTime=1592939798000&_x_zm_rtaid=hh-8qZ6URJ6kZxHdEHgOmw.1594945598504.822f51a13bf0678dbe045089783611ce&_x_zm_rhtaid=865"
 
 
 import sys
